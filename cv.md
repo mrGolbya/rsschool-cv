@@ -34,3 +34,7 @@ if(s.length % 2 === 0){
 ===
 <https://ana-beautylab.com/> - SEO-optimized landing pag, valid HTML, CSS, implementation of hiding links from the search engine, with AJAX loading of "heavy" blocks to speed up the site
 <https://optimalhormonetherapy.com> - SEO optimized landing page, valid HTML, CSS. Planted on MODx.
+***Languages***
+===
+- English - A1(in the process of studying at A2)
+- Russian - native speaker
