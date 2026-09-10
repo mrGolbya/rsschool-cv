@@ -1,3 +1,255 @@
-*{
-   box-sizing: border-box;
+:root {
+    --primary-color: #2563eb;
+    --text-color: #1f2937;
+    --text-light: #4b5563;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --border-color: #e5e7eb;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* --- ШАПКА САЙТА --- */
+.main-header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+h1 {
+    margin: 0 0 20px 0;
+    color: var(--text-color);
+    font-size: 2.5rem;
+}
+
+/* Контейнер, который разносит контакты и фото по краям */
+.main-header__content {
+    display: flex;
+    justify-content: space-between; /* Контакты влево, фото вправо */
+    align-items: center;
+    gap: 20px;
+}
+
+/* Блок контактов */
+.contacts {
+    font-style: normal; /* Сброс курсива тега <address> */
+}
+
+.contacts__list {
+    display: flex;
+    flex-direction: column; /* Контакты в один столбец, как в CV */
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contacts__list li {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.contacts__list a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contacts__list a:hover {
+    text-decoration: underline;
+}
+
+/* Фотография */
+.main-header__avatar-wrapper {
+    flex-shrink: 0;
+}
+
+.main-header__avatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* --- СЕКЦИИ И КАРТОЧКИ --- */
+.resume-section {
+    margin-bottom: 35px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: #fafafa;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.card .subtitle {
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+    list-style-type: square;
+}
+
+/* --- БЛОК С КОДОМ --- */
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    border-radius: 6px;
+    overflow-x: auto;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.code-desc {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* --- ФУТЕР --- */
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between; /* Текст влево, логотип вправо */
+    align-items: center;
+    gap: 15px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.main-footer p {
+    margin: 0;
+}
+
+.footer-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.rss-logo-link {
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.rss-logo-link:hover {
+    transform: scale(1.02);
+    opacity: 0.85;
+}
+
+.rss-logo {
+    max-width: 180px; 
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Перенесенные стили путей оригинального SVG */
+.rss-logo .st0 {
+    fill: #ffffff;
+}
+
+.rss-logo .st5, 
+.rss-logo .st7 {
+    fill: #ffffff;
+    stroke: #000000;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+}
+
+.rss-logo .st7 {
+    fill: none;
+}
+
+/* --- АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    .container {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2rem;
+        text-align: center;
+    }
+    .main-header__content {
+        flex-direction: column-reverse; /* На мобильном фото встанет над списком контактов */
+        text-align: center;
+        gap: 15px;
+    }
+    .main-footer {
+        flex-direction: column; /* Элементы футера встанут в колонку */
+        justify-content: center;
+        text-align: center;
+    }
+    .rss-logo {
+        max-width: 130px; 
+    }
 }
