@@ -54,3 +54,4 @@ function sortMyString(a) {
 | **Bauman Moscow State Technical University** <br> *Education* | **Languages** <br> *Language Proficiency* |
 | :--- | :--- |
 | - Specialist Degree <br> - Design and Technology of Electronic Equipment <br> - Graduation year: 2016 | - **Russian:** Native speaker <br> - **English:** Elementary (A1/A2, in progress) |
+
