@@ -1,74 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="style.css">
-   <title>HTML, CSS &amp; Git Basics</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Golbya Pavel</title>
+    <!-- Подключение внешнего файла стилей -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <header>
-      <div class="header__name">
-         <h1>Golbya Pavel</h1>
-      </div>
-      <div class="header__avatar"></div>
-   </header>
-   <main>
-      <div class="main__contacts">
-         <ul>
-            <li>Telegram:<a href="https://t.me/mrGolbya">https://t.me/mrGolbya</a></li>
-            <li>Discord: mrGolbya#8262</li>
-            <li>GitHub:<a href="https://github.com/mrGolbya">https://github.com/mrGolbya</a></li>
-            <li>E-mail:<a href="mailto:mr.golbya@gmail.com">mr.golbya@gmail.com</a></li>
-         </ul>
-      </div>
-      <div class="about">
-         <div class="headerH">About me</div>
-         <p>I like to make up, create something new. At the moment I really want to learn how to program in JavaScript
-            in order to become a professional front-end developer in the future.</p>
-      </div>
-      <div class="skills">
-         <div class="headerH">Skills</div>
-         <ul>
-            <li>JavaScript Basic</li>
-            <li>HTML, CSS</li>
-            <li>BEM</li>
-            <li>GitHub, Git</li>
-            <li>VS Code</li>
-            <li>Adobe Photoshop</li>
-         </ul>
-      </div>
-      <div class="codeExample">
-         <div class="headerH">Code example</div>
-         <p> <span class="">Task Codewars:</span> You are going to be given a word. Your job is to return the middle
-            character of the word. If the word's length is odd, return the middle character. If the word's length is
-            even, return the middle 2 characters.</p>
-         <div class="example">function getMiddle(s){
-            if(s.length % 2 === 0){<br>
-              return s.substring(s.length / 2+1, s.length/2-1);<br>
-             }<br>
-              else{<br>
-              return s.substring(s.length / 2, s.length / 2+1);<br>
-              }<br>
-            }
-         </div>
-      </div>
-      <div class="experience">
-         <div class="headerH">Experience</div>
-         <p> <a href="https://ana-beautylab.com">https://ana-beautylab.com</a> - SEO-optimized landing pag, valid HTML,
-            CSS, implementation of hiding links from the search engine, with AJAX loading of "heavy" blocks to speed up
-            the site</p>
-         <p> <a href="https://optimalhormonetherapy.com">https://optimalhormonetherapy.com</a> - SEO optimized landing
-            page, valid HTML, CSS. Planted on MODx.</p>
-      </div>
-      <div class="languages">
-         <div class="headerH">Languages</div>
-         <ul>
-            <li>English - A1(in the process of studying at A2)</li>
-            <li>Russian - native speaker</li>
-         </ul>
-      </div>
-   </main>
+
+<div class="container">
+
+    <!-- Кнопка переключения темы по БЭМ -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-toggle__icon">🌙</span>
+    </button>
+
+    <!-- Главный заголовок и контактная информация -->
+<header class="main-header">
+    
+    <!-- НОВЫЙ БЛОК: Имя слева, фото справа -->
+    <div class="main-header__top-row">
+        <h1>Golbya Pavel</h1>
+        <img class="main-header__avatar" src="path-to-your-photo.jpg" alt="Golbya Pavel">
+    </div>
+    
+    <!-- Семантическое навигационное меню по БЭМ -->
+    <nav class="nav-menu">
+        <!-- Иконка бургер-меню (управляется через JS) -->
+        <button class="nav-menu__burger-btn" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+            <span class="nav-menu__burger-line"></span>
+        </button>
+
+        <!-- Список ссылок (класс nav-menu__list_open будет добавляться через JS) -->
+        <ul class="nav-menu__list" id="nav-list">
+            <li class="nav-menu__item">
+                <a href="#profile" class="nav-menu__link nav-menu__link_active">Profile</a>
+            </li>
+            <li class="nav-menu__item">
+                <a href="#experience" class="nav-menu__link">Work Experience</a>
+            </li>
+            <li class="nav-menu__item">
+                <a href="#skills" class="nav-menu__link">Pro Skills</a>
+            </li>
+            <li class="nav-menu__item">
+                <a href="#code-example" class="nav-menu__link">Code Example</a>
+            </li>
+            <li class="nav-menu__item">
+                <a href="#education" class="nav-menu__link">Education & Languages</a>
+            </li>
+        </ul>
+    </nav>
+
+    
+    <!-- Остались только контакты (флекс тут больше не нужен, убираем лишний класс) -->
+    <div class="main-header__contacts-block">
+        <address class="contacts">
+            <h2>Contacts</h2>
+            <ul class="contacts__list">
+                <li><strong>Telegram:</strong> <a href="https://t.me" target="_blank">@mrGolbya</a></li>
+                <li><strong>Discord:</strong> @mrGolbya</li>
+                <li><strong>GitHub:</strong> <a href="https://github.com" target="_blank">mrGolbya</a></li>
+                <li><strong>E-mail:</strong> <a href="mailto:mr.golbya@gmail.com">mr.golbya@gmail.com</a></li>
+            </ul>
+        </address>
+    </div>
+</header>
+
+
+    <!-- Основное содержимое резюме -->
+    <main>
+        <section id="profile" class="resume-section">
+            <h2>Profile</h2>
+            <p>I have been working in the engineering field since 2016 and currently hold a position as a Head of Department. This background has helped me develop strong analytical skills, attention to detail, and experience in team coordination.</p>
+            <p>Right now, I am transitioning into web development and actively mastering JavaScript. I am looking for opportunities as a Front-End Developer where I can apply my engineering discipline and problem-solving mindset to real-world projects.</p>
+        </section>
+
+        <section id="experience" class="resume-section">
+            <h2>Work Experience</h2>
+            <div class="grid-2">
+                <article class="card">
+                    <h3>Front-End Developer</h3>
+                    <div class="subtitle">Ana's Beauty Lab</div>
+                    <ul>
+                        <li>Created a SEO-optimized landing page with valid HTML/CSS.</li>
+                        <li>Implemented hiding links from the search engine.</li>
+                        <li>Integrated AJAX loading of "heavy" blocks to speed up the site.</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Front-End Developer / Contributor</h3>
+                    <div class="subtitle">OXISS</div>
+                    <ul>
+                        <li>Improved and updated an existing e-commerce platform.</li>
+                        <li>Developed new features using PHP and JavaScript.</li>
+                        <li>Refactored HTML/CSS codebase and optimized layouts for better mobile responsiveness.</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
+        <section id="skills" class="resume-section">
+            <h2>Pro Skills</h2>
+            <ul class="skills-list">
+                <li><strong>Problem Solving</strong> & Analytical Thinking</li>
+                <li><strong>Management</strong> & Team Coordination</li>
+                <li><strong>Adaptability</strong> & Engineering Discipline</li>
+                <li><strong>Git & GitHub</strong> version control</li>
+                <li><strong>BEM Methodology</strong> & Semantic Layouts</li>
+                <li><strong>JavaScript Basic</strong>, HTML, CSS</li>
+            </ul>
+        </section>
+
+        <section id="code-example" class="resume-section">
+            <h2>Code Example</h2>
+            <p class="code-desc"><strong>Task Codewars (Odd-Even String Sort):</strong> Given a string, turn each character of even-indexed positions and odd-indexed positions into two separate strings, then return them as a single string separated by a space.</p>
+            <pre><code>function sortMyString(a) {
+    let odd = '';
+    let even = '';
+    for (let i = 0; i < a.length; i++) {
+        i % 2 ? odd += a[i] : even += a[i];
+    }
+    return `${even} ${odd}`;
+}</code></pre>
+        </section>
+
+        <section id="education" class="resume-section">
+            <h2>Education / Languages</h2>
+            <div class="grid-2">
+                <article class="card">
+                    <h3>Bauman Moscow State Technical University</h3>
+                    <div class="subtitle">Education</div>
+                    <ul>
+                        <li>Specialist Degree</li>
+                        <li>Design and Technology of Electronic Equipment</li>
+                        <li>Graduation year: 2016</li>
+                    </ul>
+                </article>
+                <article class="card">
+                    <h3>Languages</h3>
+                    <div class="subtitle">Language Proficiency</div>
+                    <ul>
+                        <li><strong>Russian:</strong> Native speaker</li>
+                        <li><strong>English:</strong> Elementary (A1/A2, in progress)</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал страницы -->
+    <footer class="main-footer">
+        <p>&copy; 2026 <a class="footer-link" href="https://github.com" target="_blank">Golbya Pavel</a></p>
+        
+        <!-- Ссылка со встроенным чистым SVG-логотипом -->
+        
+ <a class="rss-logo-link" href="https://rs.school" target="_blank" aria-label="RS School Website">
+            <svg id="Layer_1" xmlns="http://w3.org" xmlns:xlink="http://w3.org" viewBox="0 0 552.8 205.3" class="rss-logo"><path d="m285.4 68 26.3-1.7c.6 4.3 1.7 7.5 3.5 9.8 2.9 3.6 6.9 5.4 12.2 5.4 3.9 0 7-.9 9.1-2.8 2-1.5 3.2-3.9 3.2-6.4 0-2.4-1.1-4.7-3-6.2-2-1.8-6.7-3.6-14.1-5.2-12.1-2.7-20.8-6.3-25.9-10.9-5.1-4.3-8-10.6-7.8-17.3 0-4.6 1.4-9.2 4-13 3-4.3 7.1-7.7 12-9.6 5.3-2.3 12.7-3.5 22-3.5 11.4 0 20.1 2.1 26.1 6.4 6 4.2 9.6 11 10.7 20.3l-26 1.5c-.7-4-2.1-6.9-4.4-8.8s-5.3-2.8-9.2-2.8c-3.2 0-5.6.7-7.2 2-1.5 1.2-2.5 3-2.4 5 0 1.5.8 2.9 2 3.8 1.3 1.2 4.4 2.3 9.3 3.3 12.1 2.6 20.7 5.2 26 7.9 5.3 2.7 9.1 6 11.4 9.9 2.4 4 3.6 8.6 3.5 13.3 0 5.6-1.6 11.2-4.8 15.9-3.3 4.9-7.9 8.7-13.3 11-5.7 2.5-12.9 3.8-21.5 3.8-15.2 0-25.7-2.9-31.6-8.8S286.1 77 285.4 68zM6.3 97.6V8.2h46.1c8.5 0 15.1.7 19.6 2.2 4.4 1.4 8.3 4.3 10.9 8.2 2.9 4.3 4.3 9.3 4.2 14.5.3 8.8-4.2 17.2-11.9 21.6-3 1.7-6.3 2.9-9.7 3.5 2.5.7 5 1.9 7.2 3.3 1.7 1.4 3.1 3 4.4 4.7 1.5 1.7 2.8 3.6 3.9 5.6l13.4 25.9H63L48.2 70.2c-1.9-3.5-3.5-5.8-5-6.9-2-1.4-4.4-2.1-6.8-2.1H34v36.3H6.3zM34 44.4h11.7c2.5-.2 4.9-.6 7.3-1.2 1.8-.3 3.4-1.3 4.5-2.8 2.7-3.6 2.3-8.7-1-11.8-1.8-1.5-5.3-2.3-10.3-2.3H34v18.1zM0 174.2l26.3-1.7c.6 4.3 1.7 7.5 3.5 9.8 2.8 3.6 6.9 5.5 12.2 5.5 3.9 0 7-.9 9.1-2.8 2-1.6 3.2-3.9 3.2-6.4 0-2.4-1.1-4.7-3-6.2-2-1.8-6.7-3.6-14.2-5.2-12.1-2.7-20.8-6.3-25.9-10.9-5.1-4.3-8-10.6-7.8-17.3 0-4.6 1.4-9.2 4-13 3-4.3 7.1-7.7 12-9.6 5.3-2.3 12.7-3.5 22-3.5 11.4 0 20.1 2.1 26.1 6.4s9.5 11 10.6 20.3l-26 1.5c-.7-4-2.1-6.9-4.4-8.8-2.2-1.9-5.3-2.8-9.2-2.7-3.2 0-5.6.7-7.2 2.1-1.6 1.2-2.5 3-2.4 5 0 1.5.8 2.9 2 3.8 1.3 1.2 4.4 2.3 9.3 3.3 12.1 2.6 20.7 5.2 26 7.9 5.3 2.7 9.1 6 11.4 9.9 2.4 4 3.6 8.6 3.6 13.2 0 5.6-1.7 11.1-4.8 15.8-3.3 4.9-7.9 8.7-13.3 11-5.7 2.5-12.9 3.8-21.5 3.8-15.2 0-25.7-2.9-31.6-8.8-5.9-6-9.2-13.4-10-22.4z"/><path d="m133 167.2 24.2 7.3c-1.3 6.1-4 11.9-7.7 17-3.4 4.5-7.9 8-13 10.3-5.2 2.3-11.8 3.5-19.8 3.5-9.7 0-17.7-1.4-23.8-4.2-6.2-2.8-11.5-7.8-16-14.9-4.5-7.1-6.7-16.2-6.7-27.3 0-14.8 3.9-26.2 11.8-34.1s19-11.9 33.4-11.9c11.3 0 20.1 2.3 26.6 6.8 6.4 4.6 11.2 11.6 14.4 21l-24.4 5.4c-.6-2.1-1.5-4.2-2.7-6-1.5-2.1-3.4-3.7-5.7-4.9-2.3-1.2-4.9-1.7-7.5-1.7-6.3 0-11.1 2.5-14.4 7.6-2.5 3.7-3.8 9.6-3.8 17.6 0 9.9 1.5 16.7 4.5 20.4 3 3.7 7.2 5.5 12.7 5.5 5.3 0 9.3-1.5 12-4.4 2.7-3.1 4.7-7.4 5.9-13zm56.5-52.8h27.6v31.3h30.2v-31.3h27.8v89.4h-27.8v-36.2h-30.2v36.2h-27.6v-89.4z"/><path d="M271.3 159.1c0-14.6 4.1-26 12.2-34.1 8.1-8.1 19.5-12.2 34-12.2 14.9 0 26.3 4 34.4 12S364 144 364 158.4c0 10.5-1.8 19-5.3 25.7-3.4 6.6-8.7 12-15.2 15.6-6.7 3.7-15 5.6-24.9 5.6-10.1 0-18.4-1.6-25-4.8-6.8-3.4-12.4-8.7-16.1-15.2-4.1-7-6.2-15.7-6.2-26.2zm27.6.1c0 9 1.7 15.5 5 19.5 3.3 3.9 7.9 5.9 13.7 5.9 5.9 0 10.5-1.9 13.8-5.8s4.9-10.8 4.9-20.8c0-8.4-1.7-14.6-5.1-18.4-3.4-3.9-8-5.8-13.8-5.8-5.1-.2-10 2-13.4 5.9-3.4 3.9-5.1 10.4-5.1 19.5zm93.4-.1c0-14.6 4.1-26 12.2-34.1 8.1-8.1 19.5-12.2 34-12.2 14.9 0 26.4 4 34.4 12S485 144 485 158.4c0 10.5-1.8 19-5.3 25.7-3.4 6.6-8.7 12-15.2 15.6-6.7 3.7-15 5.6-24.9 5.6-10.1 0-18.4-1.6-25-4.8-6.8-3.4-12.4-8.7-16.1-15.2-4.1-7-6.2-15.7-6.2-26.2zm27.6.1c0 9 1.7 15.5 5 19.5 3.3 3.9 7.9 5.9 13.7 5.9 5.9 0 10.5-1.9 13.8-5.8 3.3-3.9 4.9-10.8 4.9-20.8 0-8.4-1.7-14.6-5.1-18.4-3.4-3.9-8-5.8-13.8-5.8-5.1-.2-10.1 2-13.4 5.9-3.4 3.9-5.1 10.4-5.1 19.5z"/><path d="M482.1 114.4h27.6v67.4h43.1v22H482v-89.4z"/><ellipse transform="rotate(-37.001 420.46 67.88)" class="st0" cx="420.5" cy="67.9" rx="63" ry="51.8"/><defs><ellipse id="SVGID_1_" transform="rotate(-37.001 420.46 67.88)" cx="420.5" cy="67.9" rx="63" ry="51.8"/></defs><clipPath id="SVGID_2_"><use xlink:href="#SVGID_1_" overflow="visible"/></clipPath><g style="clip-path:url(#SVGID_2_)"><path transform="rotate(-37.001 420.82 68.353)" class="st0" d="M330.9-14.2h179.8v165.1H330.9z"/><g id="Layer_2_1_"><defs><path id="SVGID_3_" transform="rotate(-37.001 420.82 68.353)" d="M330.9-14.2h179.8v165.1H330.9z"/></defs><clipPath id="SVGID_4_"><use xlink:href="#SVGID_3_" overflow="visible"/></clipPath><g id="Layer_1-2" style="clip-path:url(#SVGID_4_)"><ellipse transform="rotate(-37.001 420.46 67.88)" class="st0" cx="420.5" cy="67.9" rx="63" ry="51.8"/><defs><ellipse id="SVGID_5_" transform="rotate(-37.001 420.46 67.88)" cx="420.5" cy="67.9" rx="63" ry="51.8"/></defs><clipPath id="SVGID_6_"><use xlink:href="#SVGID_5_" overflow="visible"/></clipPath><g style="clip-path:url(#SVGID_6_)"><path transform="rotate(-37 420.799 68.802)" class="st0" d="M357.8 17h125.9v103.7H357.8z"/><defs><path id="SVGID_7_" transform="rotate(-37 420.799 68.802)" d="M357.8 17h125.9v103.7H357.8z"/></defs><clipPath id="SVGID_8_"><use xlink:href="#SVGID_7_" overflow="visible"/></clipPath><ellipse transform="rotate(-37.001 420.46 67.88)" class="st5" cx="420.5" cy="67.9" rx="63" ry="51.8" style="clip-path:url(#SVGID_8_)"/><path transform="rotate(-37 420.799 68.802)" d="M357.8 17h125.9v103.7H357.8z" style="fill:none;stroke:#000;stroke-width:4;stroke-miterlimit:10;clip-path:url(#SVGID_8_)"/><ellipse transform="rotate(-37.001 420.46 67.88)" class="st7" cx="420.5" cy="67.9" rx="63" ry="51.8"/><path transform="rotate(-37 420.799 68.802)" class="st0" d="M357.8 17h125.9v103.7H357.8z"/><defs><path id="SVGID_9_" transform="rotate(-37 420.799 68.802)" d="M357.8 17h125.9v103.7H357.8z"/></defs><clipPath id="SVGID_10_"><use xlink:href="#SVGID_9_" overflow="visible"/></clipPath><ellipse transform="rotate(-37.001 420.46 67.88)" class="st5" cx="420.5" cy="67.9" rx="63" ry="51.8" style="clip-path:url(#SVGID_10_)"/><path transform="rotate(-37 420.799 68.802)" d="M357.8 17h125.9v103.7H357.8z" style="fill:none;stroke:#000;stroke-width:4;stroke-miterlimit:10;clip-path:url(#SVGID_10_)"/><path transform="rotate(-37.001 420.82 68.353)" class="st7" d="M330.9-14.2h179.8v165.1H330.9z"/></g><ellipse transform="rotate(-37.001 420.46 67.88)" class="st7" cx="420.5" cy="67.9" rx="63" ry="51.8"/><path d="m392.4 61.3 10-7 12.3 17.5c2.1 2.8 3.7 5.8 4.9 9.1.7 2.5.5 5.2-.5 7.6-1.3 3-3.4 5.5-6.2 7.3-3.3 2.3-6.1 3.6-8.5 4-2.3.4-4.7 0-6.9-1-2.4-1.2-4.5-2.9-6.1-5.1l8.6-8c.7 1.1 1.6 2.1 2.6 2.9.7.5 1.5.8 2.4.8.7 0 1.4-.3 1.9-.7 1-.6 1.7-1.8 1.6-3-.3-1.7-1-3.4-2.1-4.7l-14-19.7zm30 11.1 9.1-7.2c1 1.2 2.3 2.1 3.7 2.6 2 .6 4.1.2 5.8-1.1 1.2-.8 2.2-1.9 2.6-3.3.6-1.8-.4-3.8-2.2-4.4-.3-.1-.6-.2-.9-.2-1.2-.1-3.3.4-6.4 1.7-5.1 2.1-9.1 2.9-12.1 2.6-2.9-.3-5.6-1.8-7.2-4.3-1.2-1.7-1.8-3.7-1.9-5.7 0-2.3.6-4.6 1.9-6.5 1.9-2.7 4.2-5 7-6.8 4.2-2.9 7.9-4.3 11.1-4.3 3.2 0 6.2 1.5 9 4.6l-9 7.1c-1.8-2.3-5.2-2.8-7.5-1l-.3.3c-1 .6-1.7 1.5-2.1 2.6-.3.8-.1 1.7.4 2.4.4.5 1 .9 1.7.9.8.1 2.2-.3 4.2-1.2 5-2.1 8.8-3.3 11.4-3.7 2.2-.4 4.5-.2 6.6.7 1.9.8 3.5 2.2 4.6 3.9 1.4 2 2.2 4.4 2.3 6.9.1 2.6-.6 5.1-2 7.3-1.8 2.7-4.1 5-6.8 6.8-5.5 3.8-10 5.4-13.6 4.8-3.9-.6-7.1-2.6-9.4-5.5z"/></g></g></g></svg>
+        </a>
+    </footer>
+
+</div>
+<script src="script.js"></script>
 </body>
 </html>

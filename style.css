@@ -1,3 +1,562 @@
-*{
-   box-sizing: border-box;
+:root {
+    --primary-color: #2563eb;
+    --text-color: #1f2937;
+    --text-light: #4b5563;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --border-color: #e5e7eb;
+    --card-internal-bg: #fafafa; /* Переменная для фона карточек опыта/образования */
+}
+
+/* Переменные для темной темы */
+:root[data-theme="dark"] {
+    --primary-color: #3b82f6;
+    --text-color: #f3f4f6;
+    --text-light: #9ca3af;
+    --bg-color: #111827;
+    --card-bg: #1f2937;
+    --border-color: #374151;
+    --card-internal-bg: #111827; /* Темный фон для карточек внутри секций */
+}
+
+/* Плавное изменение цветов при переключении */
+* {
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* Настройка плавного скролла для всей страницы */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 20px;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    position: relative; /* Чтобы кнопка переключателя позиционировалась относительно контейнера */
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.theme-toggle {
+    position: absolute; /* Меняем absolute на fixed, чтобы кнопка не улетала при скролле */
+    top: 10px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-color);
+    border-color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.theme-toggle__icon {
+    font-size: 0.9rem;
+    line-height: 1;
+}
+
+.theme-toggle__text {
+    font-weight: 500;
+}
+
+/* --- ОБНОВЛЕННАЯ ШАПКА САЙТА --- */
+.main-header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+/* Строка, которая разносит имя и фото по краям */
+.main-header__top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 2.5rem;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    padding: 0;
+}
+/* Прячем кнопку бургера на компьютерах */
+.nav-menu__burger-btn {
+    display: none;
+}
+.nav-menu__list {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.nav-menu__link {
+    position: relative;
+    text-decoration: none;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 6px 0;
+    transition: color 0.2s ease;
+}
+
+.nav-menu__link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.2s ease, left 0.2s ease;
+}
+
+.nav-menu__link:hover {
+    color: var(--primary-color);
+}
+
+.nav-menu__link:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+/* Активное состояние */
+.nav-menu__link_active {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.nav-menu__link_active::after {
+    width: 100%;
+    left: 0;
+}
+
+.main-header__contacts-block {
+    margin-top: 5px;
+}
+
+.main-header__avatar {
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    color: transparent; /* Скроет временный ломающийся текст alt, пока нет фото */
+}
+
+/* Контейнер, который разносит контакты и фото по краям */
+.main-header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Блок контактов */
+.contacts {
+    font-style: normal;
+}
+
+.contacts__list {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap; /* Чтобы контакты красиво переносились, если не влезают */
+}
+
+.contacts__list li {
+    font-size: 0.95rem;
+    color: var(--text-light);
+}
+
+.contacts__list a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.contacts__list a:hover {
+    text-decoration: underline;
+}
+
+/* --- СЕКЦИИ И КАРТОЧКИ --- */
+.resume-section {
+    margin-bottom: 35px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 5px;
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: var(--card-internal-bg); /* Заменили жесткий цвет #fafafa на переменную */
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.card h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.card .subtitle {
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 10px;
+    list-style-type: square;
+}
+
+/* --- БЛОК С КОДОМ С ВИДИМЫМ СКРОЛЛБАРОМ --- */
+pre {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 15px;
+    padding-bottom: 20px;    /* Запас снизу, чтобы скроллбар не перекрывал код */
+    border-radius: 6px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: scroll;      /* Принудительно включаем горизонтальный скролл */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+code {
+    font-family: 'Courier New', Courier, monospace;
+    white-space: pre;
+}
+
+/* Настройка кастомного скроллбара для WebKit-браузеров (Chrome, Safari, Edge) */
+pre::-webkit-scrollbar {
+    height: 8px;             /* Делаем полосу достаточно толстой для тапа */
+    display: block;          /* Гарантирует постоянное отображение */
+}
+
+/* Дорожка скроллбара */
+pre::-webkit-scrollbar-track {
+    background: #1e1e1e; 
+    border-radius: 0 0 6px 6px;
+}
+
+/* Контрастный ползунок (всегда виден) */
+pre::-webkit-scrollbar-thumb {
+    background: #4b5563;     /* Заметный серый цвет ползунка из вашей палитры */
+    border-radius: 4px;
+    border: 1px solid #1e1e1e;
+}
+
+/* Изменение цвета ползунка при наведении на компьютерах */
+pre::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+.code-desc {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* --- ФУТЕР --- */
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.main-footer p {
+    margin: 0;
+}
+
+.footer-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.rss-logo-link {
+    display: inline-block;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.rss-logo-link:hover {
+    transform: scale(1.02);
+    opacity: 0.85;
+}
+
+.rss-logo {
+    max-width: 180px; 
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.rss-logo .st0 {
+    fill: #ffffff;
+}
+
+.rss-logo .st5, 
+.rss-logo .st7 {
+    fill: #ffffff;
+    stroke: #000000;
+    stroke-width: 4;
+    stroke-miterlimit: 10;
+}
+
+.rss-logo .st7 {
+    fill: none;
+}
+
+/* --- АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ --- */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    /* Блокировка скролла страницы через класс-модификатор на теге body */
+    body.body_menu-open {
+        overflow: hidden;
+    }
+
+    .container {
+        padding: 20px;
+        padding-top: 60px;
+    }
+
+    /* Значок темы слева */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        right: auto;
+        z-index: 2001; /* Поднимаем слой выше полноэкранного меню */
+        background-color: var(--card-bg); /* Делаем подложку непрозрачной */
+    }
+    .nav-menu {
+        border: none;
+        margin-bottom: 0;
+    }
+
+    /* ИДЕАЛЬНО ПЛОСКАЯ КНОПКА-БУРГЕР С КРЕСТИКОМ */
+    .nav-menu__burger-btn {
+        display: flex;
+        position: fixed; /* Меняем на fixed */
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background-color: var(--card-bg); /* Делаем подложку непрозрачной */
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 2001;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    /* Центральная полоска */
+    .nav-menu__burger-line {
+        position: relative;
+        width: 18px;
+        height: 2px;
+        background-color: var(--text-color);
+        display: block;
+        transition: background-color 0.2s ease;
+    }
+
+    /* Верхняя и нижняя полоски */
+    .nav-menu__burger-line::before,
+    .nav-menu__burger-line::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 18px;
+        height: 2px;
+        background-color: var(--text-color);
+        transition: transform 0.2s ease, top 0.2s ease;
+    }
+
+    /* Точные координаты линий от центра */
+    .nav-menu__burger-line::before { top: -6px; }
+    .nav-menu__burger-line::after { top: 6px; }
+
+    /* Превращение в идеально ровный крестик (без смещений) */
+    .nav-menu__burger-btn_active .nav-menu__burger-line {
+        background-color: transparent; /* Прячем центральную линию */
+    }
+    
+    .nav-menu__burger-btn_active .nav-menu__burger-line::before {
+        top: 0;
+        transform: rotate(45deg);
+    }
+    
+    .nav-menu__burger-btn_active .nav-menu__burger-line::after {
+        top: 0;
+        transform: rotate(-45deg);
+    }
+
+    /* МЕНЮ НА ВСЮ СТРАНИЦУ (FULLSCREEN) */
+    .nav-menu__list {
+        position: fixed; /* Фиксируем поверх всего экрана */
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: var(--card-bg);
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Центрируем пункты по вертикали */
+        align-items: center;     /* Центрируем пункты по горизонтали */
+        gap: 20px;
+        padding: 0;
+        z-index: 2000;
+        
+        /* Эффект плавного появления */
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.95);
+        transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    }
+
+    /* Открытое состояние полноэкранного меню */
+    .nav-menu__list_open {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    .nav-menu__item {
+        width: auto;
+        text-align: center;
+    }
+
+    .nav-menu__link {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 1.3rem; /* Увеличили размер шрифта для удобного тапа */
+        width: auto;
+        border-radius: 6px;
+    }
+
+    .nav-menu__link::after {
+        display: none;
+    }
+
+    .nav-menu__link:hover,
+    .nav-menu__link_active {
+        background-color: var(--card-internal-bg);
+        color: var(--primary-color);
+    }
+
+    /* Перестроение остальных блоков */
+    .main-header__top-row {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .contacts__list {
+        flex-direction: column;
+        align-content: flex-start
+
+    }
+    
+    .main-footer {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .rss-logo {
+        max-width: 130px; 
+    }
+        .grid-2 {
+        grid-template-columns: 1fr; /* На мобилках строго в одну колонку */
+    }
+    
+    .card {
+        min-width: 0; /* Разрешает флекс/грид элементам сжиматься до минимума */
+    }
 }
